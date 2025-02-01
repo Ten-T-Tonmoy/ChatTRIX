@@ -6,4 +6,5 @@
 - designing model
 - making auth 
 - setting up user routes signup login logout
+- routes and controller 
 - 

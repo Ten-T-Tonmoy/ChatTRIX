@@ -1,17 +1,97 @@
 import bcrypt from "bcryptjs";
 import User from "../models/user.model.js";
+import makeTokenWithCookie from "../utlis/generateToken.js";
 
+//-----------------------------signUp----------------------------
+export const signup = async (req, res) => {
+  try {
+    const { fullname, username, password, confirmPassword, gender } = req.body;
+    if (password != confirmPassword) {
+      return res.status(400).json({
+        error: "Unmatched Passwords",
+      });
+    }
+    const Matcheduser = await User.findOne({ username });
+    if (Matcheduser) {
+      return res.status(400).json({
+        error: "Username Already Taken",
+      });
+    }
 
-export const signup = (req, res) => {
-  try {
-    const {fullname,username,password,confirmPassword,gender}
-  } catch (error) {}
+    //hashing password
+    const salt = bcrypt.genSalt(10);
+    const hashed = await bcrypt.hash(password, salt);
+
+    const malePFP = `https://avatar.iran.liara.run/public/boy?username=${username}`;
+    const femalePFP = `https://avatar.iran.liara.run/public/girl?username=${username}`;
+
+    const newUser = new User({
+      fullname,
+      username,
+      password: hashed,
+      gender,
+      profilePic: gender === "male" ? malePFP : femalePFP,
+    });
+
+    if (newUser) {
+      await newUser.save();
+
+      res.status(201).json({
+        _id: newUser.id,
+        fullname: newUser.fullname,
+        username: newUser.username,
+        profilePic: newUser.profilePic,
+      });
+    } else {
+      res.status(400).json({
+        error: "Invalid User Data",
+      });
+    }
+  } catch (error) {
+    console.log("signup controller error", error.message);
+    res.status(500).json({
+      error: "Internal server failure",
+    });
+  }
 };
-export const login = (req, res) => {
+
+//---------------------------------Login-------------------------------
+
+export const login = async (req, res) => {
   try {
-  } catch (error) {}
+    const { username, password } = req.body;
+    const typedUser = User.findOne({ username });
+    const passCorrect = await bcrypt.compare(
+      typedUser?.password || "",
+      password
+    );
+    if (!passCorrect || !typedUser) {
+      return res.status(400).json({
+        error: "Invalid Credentials",
+      });
+    }
+
+    makeTokenWithCookie(typedUser._id, res);
+  } catch (error) {
+    console.log("login controller error", error.message);
+    res.status(500).json({
+      error: "Internal server failure",
+    });
+  }
 };
+
+//--------------------------------LogOut----------------------------
+
 export const logout = (req, res) => {
   try {
-  } catch (error) {}
+    res.cookie("jwt", "", { maxAge: 0 });
+    res.status(200).json({
+      message: "Logging out Successfull",
+    });
+  } catch (error) {
+    console.log("logOut controller error", error.message);
+    res.status(500).json({
+      error: "Internal server failure",
+    });
+  }
 };
