@@ -1,0 +1,9 @@
+// here to document what i am doing serially
+
+* started with backend
+- setted up server.js basic
+- then set the connectDB
+- designing model
+- making auth 
+- setting up user routes signup login logout
+- 
