@@ -19,8 +19,9 @@ export const signup = async (req, res) => {
     }
 
     //hashing password
-    const salt = bcrypt.genSalt(10);
+    const salt = await bcrypt.genSalt(10);
     const hashed = await bcrypt.hash(password, salt);
+    //with await salt becomes string!
 
     const malePFP = `https://avatar.iran.liara.run/public/boy?username=${username}`;
     const femalePFP = `https://avatar.iran.liara.run/public/girl?username=${username}`;
@@ -60,11 +61,12 @@ export const signup = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { username, password } = req.body;
-    const typedUser = User.findOne({ username });
+    const typedUser = await User.findOne({ username });
     const passCorrect = await bcrypt.compare(
-      typedUser?.password || "",
-      password
+      password,
+      typedUser?.password || ""
     );
+    //order matters in compare
     if (!passCorrect || !typedUser) {
       return res.status(400).json({
         error: "Invalid Credentials",
