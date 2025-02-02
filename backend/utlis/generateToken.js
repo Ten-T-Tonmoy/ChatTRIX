@@ -1,7 +1,8 @@
 import jwt from "jsonwebtoken";
 
-const makeTokenWithCookie =(userID, res) => {
-  const token =jwt.sign({ userID }, process.env.JWT_SECRET, {
+// damn make sure when destructuring must have to be same name userId
+const makeTokenWithCookie = (userId, res) => {
+  const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
     expiresIn: "15d",
   });
   res.cookie("jwt", token, {

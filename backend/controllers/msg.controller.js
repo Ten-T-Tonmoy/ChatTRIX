@@ -1,15 +1,22 @@
 import Convo from "../models/convo.model.js";
 import Msg from "../models/message.model.js";
-
+import mongoose from "mongoose";
 //ps the res.user that middleware sends here becomes req
 export const sendMsg = async (req, res) => {
   try {
     //take id from params->
 
-    const { message } = req.body;
+    const { msg } = req.body;
+    //make sure to keep name accurate while destructuring!!
     const { id: receiverId } = req.params;
     //beaware the middleware made req=> req.user
-    const { id: senderId } = req.user._id;
+    const senderId = req.user._id;
+
+    //casting?
+
+    if (!mongoose.Types.ObjectId.isValid(receiverId)) {
+      return res.status(400).json({ message: "Invalid receiver ID" });
+    }
 
     let actConvo = await Convo.findOne({
       //mongoose way of shits
@@ -24,7 +31,7 @@ export const sendMsg = async (req, res) => {
     const newMsg = new Msg({
       senderId, //:senderId
       receiverId, //:receiverId
-      message, //:message
+      msg, //:message
     });
 
     if (newMsg) {
@@ -49,7 +56,7 @@ export const getMsg = async (req, res) => {
     const { id: receiverId } = req.params;
     const senderId = req.user._id;
     const gottenConvo = await Convo.findOne({
-      $all: [senderId, receiverId],
+      participants: { $all: [senderId, receiverId] },
     }).populate("messages");
     res.status(201).json(gottenConvo);
   } catch (e) {

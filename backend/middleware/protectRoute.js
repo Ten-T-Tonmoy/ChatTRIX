@@ -6,21 +6,21 @@ const protectRoute = async (req, res, next) => {
     const token = req.cookies.jwt;
     if (!token) {
       return res.status(401).json({
-        error: "Unauthorized ! access Denied",
+        error: "Unauthorized ! access Denied no cookie",
       });
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     if (!decoded) {
       return res.status(401).json({
-        error: "Unauthorized ! access Denied",
+        error: "Unauthorized ! access Denied not verified",
       });
     }
 
     const decodedUser = await User.findById(decoded.userId).select("-password");
     if (!decodedUser) {
       return res.status(401).json({
-        error: "Unauthorized ! access Denied",
+        error: "Unauthorized ! access Denied decoded dont exist",
       });
     }
 

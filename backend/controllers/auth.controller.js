@@ -74,6 +74,12 @@ export const login = async (req, res) => {
     }
 
     makeTokenWithCookie(typedUser._id, res);
+    res.status(201).json({
+      _id: typedUser._id,
+      username: typedUser.username,
+      fullname: typedUser.fullname,
+      profilePic: typedUser.profilePic,
+    });
   } catch (error) {
     console.log("login controller error", error.message);
     res.status(500).json({
