@@ -10,6 +10,10 @@ const Signup = () => {
     gender: "",
   });
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await signup(data);
+  };
 
   return <div>Signup</div>;
 };
