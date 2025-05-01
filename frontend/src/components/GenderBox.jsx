@@ -1,4 +1,6 @@
-const GenderCheckbox = () => {
+//props to parent data transmission huh
+//eslint to off error of props
+const GenderCheckbox = ({ onCheckboxChange, genderSelected }) => {
   return (
     <div className="flex mt-2  justify-around">
       <h1 className="mt-2 relative -left-4 ">Gender:</h1>
@@ -7,6 +9,8 @@ const GenderCheckbox = () => {
           <span className="label-text font-[500] text-secondary">Male</span>
           <input
             type="checkbox"
+            checked={genderSelected === "male"}
+            onChange={() => onCheckboxChange("male")}
             className="checkbox checkbox-secondary border-slate-900"
           />
         </label>
@@ -16,6 +20,8 @@ const GenderCheckbox = () => {
           <span className="label-text font-[500] text-secondary">Female</span>
           <input
             type="checkbox"
+            checked={genderSelected === "female"}
+            onChange={() => onCheckboxChange("female")}
             className="checkbox border-slate-900 checkbox-secondary"
           />
         </label>

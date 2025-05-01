@@ -11,26 +11,36 @@ const Signup = () => {
     gender: "",
   });
 
+  const handleGenderBox = (gender) => {
+    setData({ ...data, gender });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // console.log(data);
     await signup(data);
   };
 
   return (
     <div className="flex m-2 flex-col items-center justify-center min-w-96 mx-auto">
-      <div className="w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-0">
+      <div
+        className="w-full p-6 rounded-lg shadow-md bg-gray-400
+       bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-0"
+      >
         <h1 className="text-3xl font-semibold text-center text-gray-300">
           Login
           <span className="text-secondary"> ChatShits</span>
         </h1>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           <div>
             <label className="label p-2">
               <span className="text-base label-text">Fullname</span>
             </label>
             <input
               type="text"
+              value={data.fullname}
+              onChange={(e) => setData({ ...data, fullname: e.target.value })}
               placeholder="Enter Fullname"
               className="w-full bg-secondary/15 input input-bordered h-10"
             />
@@ -41,15 +51,22 @@ const Signup = () => {
             </label>
             <input
               type="text"
+              value={data.username}
+              onChange={(e) => setData({ ...data, username: e.target.value })}
               placeholder="Enter username"
               className="w-full bg-secondary/15 input input-bordered h-10"
             />
           </div>
 
-          <GenderCheckbox />
+          <GenderCheckbox
+            onCheckboxChange={handleGenderBox}
+            genderSelected={data.gender}
+          />
           <div>
             <input
               type="password"
+              value={data.password}
+              onChange={(e) => setData({ ...data, password: e.target.value })}
               placeholder="Enter Password"
               className="w-full bg-secondary/15 my-2 input input-bordered h-10"
             />
@@ -57,6 +74,10 @@ const Signup = () => {
           <div>
             <input
               type="password"
+              value={data.confirmPassword}
+              onChange={(e) =>
+                setData({ ...data, confirmPassword: e.target.value })
+              }
               placeholder="Enter Password again"
               className="w-full bg-secondary/15 my-2  input input-bordered h-10"
             />
@@ -67,7 +88,10 @@ const Signup = () => {
           {/**login with button section no functionality for now */}
 
           <div className="flex justify-between mt-2">
-            <button className="btn btn-outline rounded-full px-10  btn-secondary">
+            <button
+              type="submit"
+              className="btn btn-outline rounded-full px-10  btn-secondary"
+            >
               Sign up
             </button>
 
