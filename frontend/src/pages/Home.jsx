@@ -1,7 +1,12 @@
 import React from "react";
+import Mainpage from "./Mainpage/Mainpage";
 
 const Home = () => {
-  return <div>Home Page niga</div>;
+  return (
+    <div>
+      <Mainpage></Mainpage>
+    </div>
+  );
 };
 
 export default Home;

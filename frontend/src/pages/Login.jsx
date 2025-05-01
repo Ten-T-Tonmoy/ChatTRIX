@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 const Login = () => {
   return (
     <div className="flex m-2 flex-col items-center justify-center min-w-96 mx-auto">
-      <div className="w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
+      <div
+        className="w-full p-6 rounded-lg shadow-md
+       bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-0"
+      >
         <h1 className="text-3xl font-semibold text-center text-gray-300">
           Login
           <span className="text-secondary"> ChatShits</span>
@@ -17,7 +20,7 @@ const Login = () => {
             <input
               type="text"
               placeholder="Enter username"
-              className="w-full input input-bordered h-10"
+              className="w-full bg-secondary/15 input input-bordered h-10"
             />
           </div>
 
@@ -28,7 +31,7 @@ const Login = () => {
             <input
               type="password"
               placeholder="Enter Password"
-              className="w-full input input-bordered h-10"
+              className="w-full bg-secondary/15 input input-bordered h-10"
             />
           </div>
           <h1 className="text-secondary text-[.9rem] m-3 font-[500]">
