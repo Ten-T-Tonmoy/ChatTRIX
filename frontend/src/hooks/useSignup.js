@@ -7,7 +7,7 @@ const useSignup = () => {
   const [loading, setLoading] = useState(false);
   const { setAuthUser } = useAuthContext();
 
-  const signUp = async ({
+  const signup = async ({
     fullname,
     username,
     password,
@@ -48,8 +48,9 @@ const useSignup = () => {
       }
 
       //crucial part to save shit on local store
-      localStorage.setItem("chatter", JSON.stringify(res));
+      localStorage.setItem("chatter", JSON.stringify(res.data));
       setAuthUser(res);
+      toast.success("User Created successfully!");
     } catch (error) {
       toast.error(error.message);
     } finally {

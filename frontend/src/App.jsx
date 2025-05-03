@@ -6,8 +6,11 @@ import bgViolet from "./assets/bgViolet.png";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import { useAuthContext } from "./context/authContext";
 
 function App() {
+  const { authUser } = useAuthContext();
+
   return (
     <div
       style={{ backgroundImage: `url(${bgViolet})` }}
@@ -17,9 +20,18 @@ function App() {
       <Navbar />
       <div className=" h-screen flex items-center justify-center">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route
+            path="/"
+            element={authUser ? <Home /> : <Navigate to={"/login"} />}
+          />
+          <Route
+            path="/login"
+            element={authUser ? <Navigate to={"/"} /> : <Login />}
+          />
+          <Route
+            path="/signup"
+            element={authUser ? <Navigate to={"/"} /> : <Signup />}
+          />
         </Routes>
         <Toaster />
       </div>

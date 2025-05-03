@@ -80,6 +80,12 @@ export const login = async (req, res) => {
       fullname: typedUser.fullname,
       profilePic: typedUser.profilePic,
     });
+    // console.log({
+    //   _id: typedUser._id,
+    //   username: typedUser.username,
+    //   fullname: typedUser.fullname,
+    //   profilePic: typedUser.profilePic,
+    // });
   } catch (error) {
     console.log("login controller error", error.message);
     res.status(500).json({

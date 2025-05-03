@@ -21,7 +21,7 @@ const MessageBox = () => {
   return (
     <div className="md:min-w-[450px] flex flex-col ">
       {/**change this later to tweak shits */}
-      {selectedConvo ? (
+      {!selectedConvo ? (
         <UnselectedChat />
       ) : (
         <>
@@ -48,7 +48,9 @@ const MessageBox = () => {
 export default MessageBox;
 
 const UnselectedChat = () => {
-  const { authUser } = useAuthContext;
+  const { authUser } = useAuthContext();
+  //extraa careful must be func call or undefined
+  // console.log(authUser);
 
   return (
     <div className="flex items-center justify-center w-full h-full">
@@ -59,7 +61,9 @@ const UnselectedChat = () => {
       "
       >
         <TiMessages className="text-[5rem] md:text-6xl text-center" />
-        <p>Welcome 👋 Mr whoever {/**yep authUser here */}</p>
+        <p>
+          Hi there 👋 {authUser.fullname} {/**yep authUser here */}
+        </p>
         <p>Select someone to start yapping!</p>
       </div>
     </div>

@@ -17,7 +17,7 @@ const TypeMsg = () => {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Type message ..."
-          className="input input-bordered bg-slate-800 
+          className="input w-[85%] input-bordered bg-slate-800 
           focus:bg-slate-700
           rounded-md"
         />
@@ -25,7 +25,7 @@ const TypeMsg = () => {
           type="submit"
           className=" text-secondary hover:scale-110
           hover:-rotate-45 transition-transform duration-300 ease-linear
-            absolute items-center p-3 text-3xl
+            absolute items-center p-2 text-4xl
             "
         >
           <IoSend />

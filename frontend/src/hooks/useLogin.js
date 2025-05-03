@@ -30,7 +30,8 @@ const useLogin = () => {
       if (res.data?.error) throw new Error(res.data.error);
 
       localStorage.setItem("chatter", JSON.stringify(res.data));
-      setAuthUser(res);
+      setAuthUser(res.data);
+      toast.success("Login successfull! ");
     } catch (e) {
       toast.error(e.message);
     } finally {

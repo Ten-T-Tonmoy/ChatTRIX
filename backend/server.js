@@ -4,9 +4,10 @@ import authRoutes from "./routes/authRoutes.js";
 import cookieParser from "cookie-parser";
 import msgroutes from "./routes/msgroutes.js";
 import connectDB from "./db/connectDB.js";
+import { app, server } from "./socket/socket.js";
 
 dotenv.config();
-const app = express();
+// const app = express(); using socket one
 const port = process.env.PORT || 3000;
 connectDB();
 //middleware nd shits
@@ -19,6 +20,7 @@ app.use(express.static("public"));
 app.use("/api/auth", authRoutes);
 app.use("/api/message", msgroutes);
 
-app.listen(port, () => {
+server.listen(port, () => {
+  connectDB();
   console.log(`Server is Running on port:${port}`);
 });

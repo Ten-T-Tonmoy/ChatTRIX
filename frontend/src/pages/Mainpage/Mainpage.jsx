@@ -5,7 +5,7 @@ import MessageBox from "./MessageBox";
 const Mainpage = () => {
   return (
     <div
-      className="flex  justify-center sm:h-[450px]
+      className="flex  md:w-full justify-center sm:h-[450px]
     md:h-[650px] rounded-lg overflow-hidden bg-gray-400
     backdrop-blur-xl bg-clip-padding bg-opacity-0
     "

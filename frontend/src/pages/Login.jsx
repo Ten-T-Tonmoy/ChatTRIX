@@ -1,6 +1,18 @@
 import { Link } from "react-router-dom";
+import useLogin from "../hooks/useLogin";
+import { useState } from "react";
 
 const Login = () => {
+  const { loading, login } = useLogin();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    login(username, password);
+    setUsername("");
+    setPassword("");
+  };
   return (
     <div className="flex m-2 flex-col items-center justify-center min-w-96 mx-auto">
       <div
@@ -19,6 +31,8 @@ const Login = () => {
             </label>
             <input
               type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               placeholder="Enter username"
               className="w-full bg-secondary/15 input input-bordered h-10"
             />
@@ -30,6 +44,8 @@ const Login = () => {
             </label>
             <input
               type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter Password"
               className="w-full bg-secondary/15 input input-bordered h-10"
             />
@@ -87,7 +103,11 @@ const Login = () => {
           </div>
 
           <div className="flex justify-between mt-2">
-            <button className="btn btn-outline rounded-full px-10  btn-secondary">
+            <button
+              type="submit"
+              onClick={handleSubmit}
+              className="btn btn-outline rounded-full px-10  btn-secondary"
+            >
               Log in
             </button>
 
