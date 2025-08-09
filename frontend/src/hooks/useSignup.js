@@ -49,7 +49,7 @@ const useSignup = () => {
 
       //crucial part to save shit on local store
       localStorage.setItem("chatter", JSON.stringify(res.data));
-      setAuthUser(res);
+      setAuthUser(res.data);
       toast.success("User Created successfully!");
     } catch (error) {
       toast.error(error.message);

@@ -1,7 +1,10 @@
 import Convo from "../models/convo.model.js";
 import Msg from "../models/message.model.js";
 import mongoose from "mongoose";
+import { getReceiverSocketId } from "../socket/socket.js";
 //ps the res.user that middleware sends here becomes req
+
+//------------------------------------Send Message------------------------------
 export const sendMsg = async (req, res) => {
   try {
     //take id from params->
@@ -14,16 +17,15 @@ export const sendMsg = async (req, res) => {
 
     //casting?
 
-    if (!mongoose.Types.ObjectId.isValid(receiverId)) {
-      return res.status(400).json({ message: "Invalid receiver ID" });
-    }
+    // if (!mongoose.Types.ObjectId.isValid(receiverId)) {
+    //   return res.status(400).json({ message: "Invalid receiver ID" });
+    // }
 
-    let actConvo = await Convo.findOne({
-      //mongoose way of shits
+    let currentConversation = await mongoose.findOne({
       participants: { $all: [senderId, receiverId] },
     });
-    if (!actConvo) {
-      actConvo = await Convo.create({
+    if (!currentConversation) {
+      currentConversation = await Convo.create({
         participants: [senderId, receiverId],
       });
     }
@@ -33,14 +35,21 @@ export const sendMsg = async (req, res) => {
       receiverId, //:receiverId
       msg, //:message
     });
+    //this generates _id .. mongoose
 
     if (newMsg) {
-      actConvo.messages.push(newMsg._id);
+      currentConversation.messages.push(newMsg._id);
     }
     //awaiting together will be faster since async and parallel
     //socket io shit goes here
 
-    await Promise.all([actConvo.save(), newMsg.save()]);
+    await Promise.all([currentConversation.save(), newMsg.save()]);
+
+    //----------------socket----------------------------
+    const receiverSocketId = getReceiverSocketId(receiverId);
+    if (getReceiverSocketId) {
+      io.to(receiverSocketId).emit("newMessage", newMsg);
+    }
 
     res.status(201).json(newMsg);
   } catch (e) {
@@ -50,6 +59,8 @@ export const sendMsg = async (req, res) => {
     });
   }
 };
+
+//-----------------------------Get message ------------------------------------
 
 export const getMsg = async (req, res) => {
   try {
@@ -66,3 +77,6 @@ export const getMsg = async (req, res) => {
     });
   }
 };
+
+
+// id ! _id  userId 

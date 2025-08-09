@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import authRoutes from "./routes/authRoutes.js";
+import authRoutes from "./routes/authroutes.js";
 import cookieParser from "cookie-parser";
 import msgroutes from "./routes/msgroutes.js";
 import connectDB from "./db/connectDB.js";

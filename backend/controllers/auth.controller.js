@@ -9,12 +9,14 @@ export const signup = async (req, res) => {
     if (password != confirmPassword) {
       return res.status(400).json({
         error: "Unmatched Passwords",
+        reason: "unmatched",
       });
     }
     const Matcheduser = await User.findOne({ username });
     if (Matcheduser) {
       return res.status(400).json({
         error: "Username Already Taken",
+        reason: "duplicate",
       });
     }
 
@@ -23,6 +25,12 @@ export const signup = async (req, res) => {
     const hashed = await bcrypt.hash(password, salt);
     //with await salt becomes string!
 
+    //img url no longer working fix it ⚠️⚠️⚠️ use frontend
+    /**
+     * sent a random num
+     * keep 10/20 avator cloudinary urls? 
+     * choose from them option!
+     */
     const malePFP = `https://avatar.iran.liara.run/public/boy?username=${username}`;
     const femalePFP = `https://avatar.iran.liara.run/public/girl?username=${username}`;
 
