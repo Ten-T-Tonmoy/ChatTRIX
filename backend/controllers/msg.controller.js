@@ -64,7 +64,7 @@ export const sendMsg = async (req, res) => {
 
 export const getMsg = async (req, res) => {
   try {
-    const { id: receiverId } = req.params;
+    const { id: receiverId } = req.params; //convo.id? user to chat
     const senderId = req.user._id;
     const gottenConvo = await Convo.findOne({
       participants: { $all: [senderId, receiverId] },
@@ -78,5 +78,4 @@ export const getMsg = async (req, res) => {
   }
 };
 
-
-// id ! _id  userId 
+// id ! _id  userId

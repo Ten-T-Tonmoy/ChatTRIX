@@ -6,7 +6,13 @@ import useGetConvoList from "../../hooks/useGetConvoList.js";
 const ConvoList = () => {
   const { loading, convoList } = useGetConvoList();
   console.log(convoList);
-  return <div>{convoList}</div>;
+  return (
+    <div>
+      {convoList.map((el) => (
+        <div>{el.fullname}</div>
+      ))}{" "}
+    </div>
+  );
 };
 
 export default ConvoList;

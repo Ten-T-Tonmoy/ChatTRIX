@@ -9,9 +9,7 @@ const useGetConvoList = () => {
   const getConvoList = async () => {
     setLoading(true);
     try {
-      const res = await fetch(
-        `https://localhost:3000/api/sidebar?$userId=${authUser._id}`
-      );
+      const res = await fetch(`/api/sidebar?$userId=${authUser._id}`);
       const data = await res.json();
       if (data.error) {
         throw new Error(data.error);

@@ -7,7 +7,9 @@ export const getSidebarUsers = async (req, res) => {
       _id: { $ne: loggedUser },
     }).select("-password");
     //keeping aside passwords
-    console.log(filteredUsers);
+    // console.log(filteredUsers);
+
+    res.status(200).json(filteredUsers);
   } catch (er) {
     console.error("error occurerd while getting sidebar users", er.message);
     res.status(500).json({
