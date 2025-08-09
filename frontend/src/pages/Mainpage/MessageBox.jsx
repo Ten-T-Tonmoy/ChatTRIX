@@ -13,6 +13,7 @@ import TypeMsg from "./TypeMsg.jsx";
 
 const MessageBox = () => {
   const { selectedConvo, setSelectedConvo } = useConvo();
+  console.log("convo selected", selectedConvo);
 
   useState(() => {
     //just need to cleanup shits
@@ -21,7 +22,7 @@ const MessageBox = () => {
   return (
     <div className="md:min-w-[450px] flex flex-col ">
       {/**change this later to tweak shits */}
-      {selectedConvo ? (
+      {!selectedConvo ? (
         <UnselectedChat />
       ) : (
         <>
@@ -34,7 +35,7 @@ const MessageBox = () => {
             text-gray-900 font-bold dark:text-gray-400
             "
             >
-              Receiver {/**receiver name goes here */}
+              {selectedConvo.fullname} {/**receiver name goes here */}
             </span>
           </div>
           <Messages />

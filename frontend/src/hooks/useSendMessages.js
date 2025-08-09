@@ -9,13 +9,14 @@ import useConvo from "../zustand/useConvo";
 const useSendMessage = () => {
   const { authUser } = useAuthContext();
   const [loading, setLoading] = useState(false);
+  //selectedCOnvo is just a user obj
   const { setMessages, messages, selectedConvo } = useConvo();
 
   const sendMessage = async (message) => {
     setLoading(true);
 
     try {
-      const res = axios.post(
+      const res = await axios.post(
         `/api/messages/send/${selectedConvo._id}`,
         { message },
         {
@@ -29,7 +30,7 @@ const useSendMessage = () => {
         throw new Error(res.data.error);
       }
 
-      setMessages([...messages, message]);
+      setMessages([...messages, res.data]);
       //   setMessages([...messages,res.data]);
     } catch (e) {
       toast.error(e.message);

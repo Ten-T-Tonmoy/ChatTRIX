@@ -5,14 +5,21 @@ import useGetConvoList from "../../hooks/useGetConvoList.js";
 
 const ConvoList = () => {
   const { loading, convoList } = useGetConvoList();
-  console.log(convoList);
+  // console.log("frickin list huh", convoList);
   return (
     <div>
-      {convoList.map((el) => (
-        <div>{el.fullname}</div>
-      ))}{" "}
+      {convoList.map((convo, idx) => (
+        <Convo key={convo._id} convo={convo}></Convo>
+      ))}
     </div>
   );
 };
 
 export default ConvoList;
+
+/**
+ * passdown
+ * convo (el)
+ * emoji (random)
+ *
+ */

@@ -5,7 +5,7 @@ export const getSidebarUsers = async (req, res) => {
     const loggedUser = req.query.userId;
     const filteredUsers = await User.find({
       _id: { $ne: loggedUser },
-    }).select("-password");
+    }).select("-password"); //list of all users
     //keeping aside passwords
     // console.log(filteredUsers);
 
