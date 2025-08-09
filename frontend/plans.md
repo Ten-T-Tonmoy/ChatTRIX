@@ -64,10 +64,11 @@
 
 - events
   - connect
-  - activeUsers =>socketUserMap
+  - activeUsers => socketUserMap
   - //userId?
   - disconnect
   - **send receiver id as params**
+
 - send message needs (newMessage)
   - user.\_id
   - id/receiverId in params

@@ -15,19 +15,20 @@ export const SocketContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (authUser) {
-      const socket = io("https://localhost:5000", {
+      //parameters of io huh socket.handshake.query.userId on server
+      const newSocket = io("https://localhost:5000", {
         query: {
           userId: authUser._id,
         },
-        //parameters of io huh
       });
       //whatever emit sends .on receives
-      setSocket(socket);
-      socket.on("activeUsers", (users) => {
+      setSocket(newSocket);
+      newSocket.on("activeUsers", (users) => {
         setActive(users); //gets objs?
       });
+      // active sockets userId
 
-      return () => socket.close();
+      return () => newSocket.close();
     } else {
       if (socket) {
         socket.close();

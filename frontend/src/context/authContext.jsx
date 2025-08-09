@@ -18,3 +18,13 @@ export const AuthContextProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+//info about auth User
+
+/**
+ * authContext => where values will be stored
+ * authCOntextProvider => whole domain where contexts will be shared values
+ * useAuthContext just a shortCut or
+ *    =>  everplace useContext(authContext) to access it returns val
+ * const { authUser, setAuthUser } = useAuthContext();
+ */
