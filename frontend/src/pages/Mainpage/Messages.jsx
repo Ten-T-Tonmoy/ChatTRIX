@@ -1,7 +1,26 @@
 import React from "react";
+import useGetMessages from "../../hooks/useGetMessages";
+import Message from "./Message";
+import useWatchMessage from "../../hooks/useWatchMessage";
 
 const Messages = () => {
-  return <div>Messages</div>;
+  const { messages, loading } = useGetMessages();
+  useWatchMessage();
+  // console.log("The messages r here my man :",messages.messages)
+  /**
+   * tffff!
+   *      messages
+   *            messages,participants,createdAt,_id,updatedAt
+   *                      msg,createdAt,receiverId,senderId,updatedAt,_id
+   */
+
+  return (
+    <div className="w-full flex flex-col">
+      {messages.messages?.map((msg, idx) => (
+        <Message key={idx} msg={msg} />
+      ))}
+    </div>
+  );
 };
 
 export default Messages;

@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import msgroutes from "./routes/msgroutes.js";
 import connectDB from "./db/connectDB.js";
 import { app, server } from "./socket/socket.js";
+import cors from "cors";
 
 dotenv.config();
 // const app = express(); using socket one
@@ -16,6 +17,12 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
+app.use(
+  cors({
+    origin: "http://localhost:5000",
+    credentials: true,
+  })
+);
 
 //routes
 app.use("/api/auth", authRoutes);

@@ -13,7 +13,7 @@ import TypeMsg from "./TypeMsg.jsx";
 
 const MessageBox = () => {
   const { selectedConvo, setSelectedConvo } = useConvo();
-  console.log("convo selected", selectedConvo);
+  // console.log("convo selected", selectedConvo);
 
   useState(() => {
     //just need to cleanup shits

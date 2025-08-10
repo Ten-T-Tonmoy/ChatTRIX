@@ -18,6 +18,7 @@ yarn-error.log*
 # Build directories
 /build/
 dist/
+extra.html
 
 # Dependency directories
 /bower_components/

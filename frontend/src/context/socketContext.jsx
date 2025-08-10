@@ -16,7 +16,7 @@ export const SocketContextProvider = ({ children }) => {
   useEffect(() => {
     if (authUser) {
       //parameters of io huh socket.handshake.query.userId on server
-      const newSocket = io("https://localhost:5000", {
+      const newSocket = io("http://localhost:3000/", {
         query: {
           userId: authUser._id,
         },

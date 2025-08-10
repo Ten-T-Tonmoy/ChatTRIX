@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { IoSend } from "react-icons/io5";
+import useSendMessage from "../../hooks/useSendMessages";
 
 const TypeMsg = () => {
   const [message, setMessage] = useState("");
+  const { loading, sendMessage } = useSendMessage();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!message) return;
+    sendMessage(message);
     setMessage("");
   };
   return (

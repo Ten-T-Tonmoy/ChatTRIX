@@ -2,6 +2,7 @@ import Convo from "../models/convo.model.js";
 import Msg from "../models/message.model.js";
 import mongoose from "mongoose";
 import { getReceiverSocketId } from "../socket/socket.js";
+import { io } from "../socket/socket.js";
 //ps the res.user that middleware sends here becomes req
 
 //------------------------------------Send Message------------------------------
@@ -21,7 +22,7 @@ export const sendMsg = async (req, res) => {
     //   return res.status(400).json({ message: "Invalid receiver ID" });
     // }
 
-    let currentConversation = await mongoose.findOne({
+    let currentConversation = await Convo.findOne({
       participants: { $all: [senderId, receiverId] },
     });
     if (!currentConversation) {

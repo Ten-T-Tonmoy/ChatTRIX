@@ -17,8 +17,8 @@ const useSendMessage = () => {
 
     try {
       const res = await axios.post(
-        `/api/messages/send/${selectedConvo._id}`,
-        { message },
+        `/api/message/send/${selectedConvo._id}`,
+        { msg: message },
         {
           headers: {
             "Content-Type": "application/json",
