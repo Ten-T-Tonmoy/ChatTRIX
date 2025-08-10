@@ -14,14 +14,14 @@ const Login = () => {
     setPassword("");
   };
   return (
-    <div className="flex m-2 flex-col items-center justify-center min-w-96 mx-auto">
+    <div className="flex h-screen max-h-screen m-2 flex-col items-center justify-center min-w-96 mx-auto">
       <div
         className="w-full p-6 rounded-lg shadow-md
        bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-0"
       >
         <h1 className="text-3xl font-semibold text-center text-gray-300">
           Login
-          <span className="text-secondary"> ChatShits</span>
+          <span className="text-secondary font-bold"> ChatTrix</span>
         </h1>
 
         <form>
@@ -50,11 +50,9 @@ const Login = () => {
               className="w-full bg-secondary/15 input input-bordered h-10"
             />
           </div>
-          <h1 className="text-secondary text-[.9rem] m-3 font-[500]">
-            Sign up if you dont have an acc.
-          </h1>
+
           {/**login with button section no functionality for now */}
-          <div className="flex gap-1 wrap">
+          <div className="flex gap-2 wrap mt-4">
             <button className="btn bg-black text-white border-black">
               <svg
                 aria-label="GitHub logo"
@@ -70,7 +68,7 @@ const Login = () => {
               </svg>
               Login with GitHub
             </button>
-            <button className="btn bg-white text-black border-[#e5e5e5]">
+            <button className="btn hover:bg-white/80 bg-white text-black border-[#e5e5e5]">
               <svg
                 aria-label="Google logo"
                 width="16"
@@ -101,18 +99,24 @@ const Login = () => {
               Login with Google
             </button>
           </div>
+          <h1 className="text-secondary text-[.9rem] m-3 font-[500]">
+            Don't have an account ? Join us then.
+          </h1>
 
           <div className="flex justify-between mt-2">
             <button
               type="submit"
               onClick={handleSubmit}
-              className="btn btn-outline rounded-full px-10  btn-secondary"
+              className="btn  text-white rounded-full px-10  btn-secondary"
             >
               Log in
             </button>
 
             <Link to={"/signup"}>
-              <button className="btn btn-outline rounded-full px-10 btn-secondary">
+              <button
+                className="btn btn-outline hover:text-white border-secondary text-secondary 
+              hover:bg-secondary hover:border-secondary rounded-full px-10 "
+              >
                 Sign up?
               </button>
             </Link>

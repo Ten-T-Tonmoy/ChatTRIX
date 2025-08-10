@@ -24,14 +24,17 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex m-2 flex-col items-center justify-center min-w-96 mx-auto">
+    <div
+      className="flex m-2 h-screen flex-col items-center justify-center 
+    min-w-96 mx-auto"
+    >
       <div
         className="w-full p-6 rounded-lg shadow-md bg-gray-400
        bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-0"
       >
         <h1 className="text-3xl font-semibold text-center text-gray-300">
           Login
-          <span className="text-secondary"> ChatShits</span>
+          <span className="text-secondary font-bold"> ChatTrix</span>
         </h1>
 
         <form onSubmit={handleSubmit}>
@@ -85,21 +88,24 @@ const Signup = () => {
             />
           </div>
           <h1 className="text-secondary text-[.9rem] m-3 font-[500]">
-            Log in if you already have an acc.
+            Already have an Account ? Log in then .
           </h1>
           {/**login with button section no functionality for now */}
 
           <div className="flex justify-between mt-2">
             <button
               type="submit"
-              className="btn btn-outline rounded-full px-10  btn-secondary"
+              className="btn text-white rounded-full px-10  btn-secondary"
             >
               Sign up
             </button>
 
             <Link to={"/login"}>
-              <button className="btn btn-outline rounded-full px-10 btn-secondary">
-                Log in?
+              <button
+                className="btn btn-outline hover:text-white border-secondary text-secondary 
+              hover:bg-secondary hover:border-secondary rounded-full px-10 "
+              >
+                Log in ?
               </button>
             </Link>
           </div>

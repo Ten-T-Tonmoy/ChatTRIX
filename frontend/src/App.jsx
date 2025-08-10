@@ -17,8 +17,7 @@ function App() {
       className={`bg-cover bg-center h-cover
   w-cover`}
     >
-      <Navbar />
-      <div className=" h-screen flex items-center justify-center">
+      <div className=" max-h-screen flex items-center justify-center">
         <Routes>
           <Route
             path="/"

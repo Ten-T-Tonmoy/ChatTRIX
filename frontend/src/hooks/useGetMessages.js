@@ -20,10 +20,11 @@ const useGetMessages = () => {
         const data = await res.json();
         if (data === null) {
           // console.log("no msg bro look :", data);
+          setMessages([]);
           return;
         }
         if (data.error) throw new Error(data.error);
-        setMessages(data);
+        setMessages(data.messages);
         // console.log("the messages are :", data);
       } catch (err) {
         console.error(err.message);

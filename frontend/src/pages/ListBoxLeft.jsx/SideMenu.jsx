@@ -1,12 +1,12 @@
 import React from "react";
-import Search from "./Search.jsx";
+import Search from "../Mainpage/Search.jsx";
 import ConvoList from "./ConvoList.jsx";
 
 const SideMenu = () => {
   return (
     <div
-      className="
-  border-r border-slate-500 px-4 py-4 flex flex-col
+      className="h-screen hidden
+  border-r border-slate-500 px-4 py-4 sm:flex flex-col
   "
     >
       {/**not satisfied with sizing bruh */}

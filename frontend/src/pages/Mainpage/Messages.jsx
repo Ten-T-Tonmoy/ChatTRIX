@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useGetMessages from "../../hooks/useGetMessages";
 import Message from "./Message";
 import useWatchMessage from "../../hooks/useWatchMessage";
 
 const Messages = () => {
   const { messages, loading } = useGetMessages();
+
   useWatchMessage();
   // console.log("The messages r here my man :",messages.messages)
   /**
@@ -16,7 +17,7 @@ const Messages = () => {
 
   return (
     <div className="w-full flex flex-col">
-      {messages.messages?.map((msg, idx) => (
+      {messages?.map((msg, idx) => (
         <Message key={idx} msg={msg} />
       ))}
     </div>
