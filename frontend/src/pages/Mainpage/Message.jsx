@@ -16,10 +16,19 @@ const Message = ({ msg }) => {
   const formattedTime = timeFormat(msg.createdAt);
   // a class to cs
   const chatStyle = fromOwnself
-    ? "bg-blue-400 self-end "
-    : "bg-gray-200 self-start";
+    ? "bg-blue-400 text-white  self-end rounded-tr"
+    : "bg-gray-600 text-white  self-start rounded-tl";
 
-  return <div>{msg.msg}</div>;
+  return (
+    <div
+      className={`p-2 px-3 rounded-xl my-1
+        cursor-pointer
+    ${chatStyle}
+    `}
+    >
+      {msg.msg}
+    </div>
+  );
 };
 
 export default Message;

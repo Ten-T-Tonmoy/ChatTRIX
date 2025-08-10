@@ -4,6 +4,7 @@ import { useAuthContext } from "../../context/authContext";
 import { TiMessages } from "react-icons/ti";
 import Messages from "./Messages.jsx";
 import TypeMsg from "./TypeMsg.jsx";
+import TopBar from "./TopNameBar.jsx";
 
 /**
  *header
@@ -20,24 +21,13 @@ const MessageBox = () => {
     return () => setSelectedConvo(null);
   }, [setSelectedConvo]);
   return (
-    <div className="md:min-w-[450px] flex flex-col ">
+    <div className="w-full flex flex-col ">
       {/**change this later to tweak shits */}
       {!selectedConvo ? (
         <UnselectedChat />
       ) : (
         <>
-          {/**top bar huh */}
-          <div className="bg-gray-300 text-center dark:bg-slate-900 px-4 py-2 mb-2">
-            <span className="label-text">Sending To :</span>
-            {"  "}
-            <span
-              className="
-            text-gray-900 font-bold dark:text-gray-400
-            "
-            >
-              {selectedConvo.fullname} {/**receiver name goes here */}
-            </span>
-          </div>
+          <TopBar selectedConvo={selectedConvo} />
           <Messages />
           <TypeMsg />
         </>
@@ -47,6 +37,8 @@ const MessageBox = () => {
 };
 
 export default MessageBox;
+
+//------------------------------------unselected Chat-------------------------------------------
 
 const UnselectedChat = () => {
   const { authUser } = useAuthContext();
@@ -70,3 +62,5 @@ const UnselectedChat = () => {
     </div>
   );
 };
+
+// -------------------------------TopBar-------------------------------------------------------

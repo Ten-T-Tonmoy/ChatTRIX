@@ -16,7 +16,10 @@ const Messages = () => {
    */
 
   return (
-    <div className="w-full flex flex-col">
+    <div
+      className="w-full px-2 flex flex-col overflow-y-scroll
+    h-[90%] scrollbar-hidden"
+    >
       {messages?.map((msg, idx) => (
         <Message key={idx} msg={msg} />
       ))}

@@ -1,5 +1,5 @@
 import React from "react";
-import Search from "../Mainpage/Search.jsx";
+import Search from "./Search.jsx";
 import ConvoList from "./ConvoList.jsx";
 
 const SideMenu = () => {
