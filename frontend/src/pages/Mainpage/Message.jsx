@@ -21,7 +21,7 @@ const Message = ({ msg }) => {
 
   return (
     <div
-      className={`p-2 px-3 rounded-xl my-1
+      className={`p-2 px-3 md:px-4 rounded-xl my-1
         cursor-pointer
     ${chatStyle}
     `}

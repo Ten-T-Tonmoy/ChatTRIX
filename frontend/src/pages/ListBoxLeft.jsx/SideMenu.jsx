@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Search from "./Search.jsx";
 import ConvoList from "./ConvoList.jsx";
 import useConvo from "../../zustand/useConvo.js";
+import SettingPopUp from "./Settings.jsx";
 
 // icon
 import { FaRegEdit } from "react-icons/fa";
@@ -27,10 +28,10 @@ const SideMenu = () => {
   const { selectedConvo } = useConvo();
   return (
     <div
-      className={`h-screen relative md:w-[50%]  w-full 
-  border-r border-slate-500 sm:flex flex-col
-    backdrop-blur-3xl bg-clip-padding bg-opacity-0
-  ${!selectedConvo ? "flex" : "hidden"}
+      className={`h-screen relative md:w-[35%] lg:w-[30%]  w-full 
+      border-r border-slate-500 sm:flex flex-col
+      backdrop-blur-3xl bg-clip-padding bg-opacity-0
+      ${!selectedConvo ? "flex" : "hidden"}
   `}
     >
       <TopHeader />
@@ -50,34 +51,39 @@ export default SideMenu;
 
 // --------------------------TopHeader-------------------------------------
 const TopHeader = () => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <div
-      className="w-full sticky px-4  border-b border-white/50 top-0 flex py-2 justify-between
-     items-center "
-    >
-      <h1
-        className="font-bold text-white 
-  text-2xl"
+    <>
+      <SettingPopUp isOpen={isOpen} setIsOpen={setIsOpen} />
+      <div
+        className="w-full sticky px-4  border-b border-white/50 top-0 flex py-2 justify-between
+      items-center "
       >
-        ChatTriX
-      </h1>
-      <div className="flex justify-center items-center">
-        <div
-          className=" w-10 h-10  rounded-full hover:bg-gray-200/40
-                        cursor-pointer flex items-center justify-center active:scale-90 transition-all
-                        duration-300 ease-in-out text-white "
+        <h1
+          className="font-bold text-white 
+        text-2xl"
         >
-          <FaRegEdit className="text-[1.3rem] " />
-        </div>
-        <div
-          className=" w-10 h-10  rounded-full hover:bg-gray-200/40
-                        cursor-pointer flex items-center justify-center active:scale-90 transition-all
-                        duration-300 ease-in-out text-white "
-        >
-          <IoMdSettings className="text-[1.5rem] " />
+          ChatTriX
+        </h1>
+        <div className="flex justify-center items-center">
+          <div
+            className=" w-10 h-10  rounded-full hover:bg-gray-200/40
+          cursor-pointer flex items-center justify-center active:scale-90 transition-all
+          duration-300 ease-in-out text-white "
+          >
+            <FaRegEdit className="text-[1.3rem] " />
+          </div>
+          <div
+            onClick={() => setIsOpen(true)}
+            className=" w-10 h-10  rounded-full hover:bg-gray-200/40
+          cursor-pointer flex items-center justify-center active:scale-90 transition-all
+          duration-300 ease-in-out text-white "
+          >
+            <IoMdSettings className="text-[1.5rem] " />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

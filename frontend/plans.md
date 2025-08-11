@@ -63,6 +63,7 @@
 ### websockets connecting
 
 - events
+
   - connect
   - activeUsers => socketUserMap
   - //userId?
@@ -108,3 +109,25 @@
       - bday extra info
       - add friend option
       - discovery option
+
+### future improvements!
+
+- ui/ux
+  - implement notifications!
+  - from chatPage
+    - i icon to profile short
+    - send images!?
+    - message CRUD=> update,delete
+    -
+  - from peopleList
+    - logical cleanup for removing ownself
+    - setting pop up add
+      - theme!?
+      - logOut
+      - profile
+      - more options -> redirect to menu
+    - add feature not implemented yet Toast
+  - peopleList => MenuBar page
+    - edit ,delete profile
+    - theme ,status,username,avatar
+    - fancy nonfunctional addons!

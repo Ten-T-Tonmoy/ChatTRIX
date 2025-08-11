@@ -53,11 +53,11 @@ const UnselectedChat = () => {
       flex flex-col items-center gap-3
       "
       >
-        <TiMessages className="text-[5rem] md:text-6xl text-center" />
-        <p>
+        <TiMessages className="text-[9rem]  text-center" />
+        <p className="text-3xl">
           Hi there 👋 {authUser.fullname} {/**yep authUser here */}
         </p>
-        <p>Select someone to start yapping!</p>
+        <p className="text-3xl">Select someone to start yapping!</p>
       </div>
     </div>
   );

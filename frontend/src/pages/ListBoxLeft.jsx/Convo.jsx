@@ -12,17 +12,18 @@ const Convo = ({ convo }) => {
   };
   return (
     <div
-      className=" w-full flex items-center gap-2 relative
-  cursor-pointer hover:bg-slate-200/30 px-2 py-2 transition-all
+      className={`w-full flex items-center gap-2 relative
+  cursor-pointer  px-2 py-2 transition-all
   active:scale-90
-  "
+  ${selectedConvo === convo ? "bg-secondary/40" : "hover:bg-slate-200/30"}
+  `}
       onClick={() => handleShit(convo)}
     >
       {/**
        * img name
        *     msg   time
        */}
-      <img src={convo.profilePic} className="w-10" alt="" />
+      <img loading="lazy" src={convo.profilePic} className="w-10" alt="" />
 
       <div className="flex flex-col  justify-start items-start ">
         <h1 className="text-white">{convo?.fullname}</h1>

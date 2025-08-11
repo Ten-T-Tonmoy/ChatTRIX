@@ -8,6 +8,11 @@ const ConvoList = () => {
   // console.log("frickin list huh", convoList);
   return (
     <div className="h-full w-full ">
+      {loading && (
+        <div className="flex h-full items-center justify-center w-full">
+          <div className="loading  loading-spinner h-7 text-white"></div>
+        </div>
+      )}
       {convoList.map((convo, idx) => (
         <Convo key={convo._id} convo={convo}></Convo>
       ))}
