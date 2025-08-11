@@ -7,7 +7,10 @@ const ConvoList = () => {
   const { loading, convoList } = useGetConvoList();
   // console.log("frickin list huh", convoList);
   return (
-    <div>
+    <div className="h-full w-full ">
+      {convoList.map((convo, idx) => (
+        <Convo key={convo._id} convo={convo}></Convo>
+      ))}
       {convoList.map((convo, idx) => (
         <Convo key={convo._id} convo={convo}></Convo>
       ))}

@@ -21,7 +21,7 @@ const TypeMsg = () => {
   };
   return (
     <form
-      className="px-4 my-3 w-full flex justify-center items-center"
+      className="px-4 py-2 border-t border-white/30 w-full flex justify-center items-center"
       onSubmit={handleSubmit}
     >
       {/* icons section ----------------------------- */}

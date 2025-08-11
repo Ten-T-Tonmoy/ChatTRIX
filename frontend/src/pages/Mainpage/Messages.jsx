@@ -17,7 +17,7 @@ const Messages = () => {
 
   return (
     <div
-      className="w-full px-2 flex flex-col overflow-y-scroll
+      className="w-full p-2 flex flex-col overflow-y-scroll
     h-[90%] scrollbar-hidden"
     >
       {messages?.map((msg, idx) => (
